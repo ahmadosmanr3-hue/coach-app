@@ -220,7 +220,7 @@ export default function MealPlannerPage() {
                     <div className="flex items-center gap-6">
                         <div>
                             <div className="text-lg font-semibold">Meal Planner</div>
-                            <div className="text-xs text-slate-400">Coach code: {session?.code}</div>
+                            <div className="text-xs text-slate-400">Coach: {session?.coachName || session?.code}</div>
                         </div>
                         <button
                             onClick={() => navigate('/builder')}
