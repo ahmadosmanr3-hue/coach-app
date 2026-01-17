@@ -162,26 +162,42 @@ export default function BuilderPage() {
 
     setSaving(true)
     try {
-      // 1. Generate PDF
+      // 1. Generate PDF using Cloning Technique (Robust against "Wrong PNG signature")
       const element = pdfRef.current
-      // Improve visibility for capture to avoid "wrong signature" error (often due to empty/transparent input)
-      element.style.display = 'block'
-      element.style.position = 'fixed'
-      element.style.left = '0'
-      element.style.top = '0'
-      element.style.zIndex = '-9999'
 
-      const canvas = await html2canvas(element, {
+      // Clone the element
+      const clone = element.cloneNode(true)
+
+      // Style the clone to be visible but off-screen
+      clone.style.display = 'block'
+      clone.style.position = 'fixed'
+      clone.style.left = '-9999px'
+      clone.style.top = '0'
+      clone.style.width = '210mm' // Enforce A4 width
+      clone.style.zIndex = '-9999'
+
+      // Append to body
+      document.body.appendChild(clone)
+
+      // Render the clone
+      const canvas = await html2canvas(clone, {
         scale: 2,
         useCORS: true,
         logging: false,
-        backgroundColor: '#ffffff' // Force white background
+        backgroundColor: '#ffffff',
+        windowWidth: 1000 // Ensure enough width
       })
 
-      // Cleanup style
-      element.style.display = 'none'
+      // Remove the clone
+      document.body.removeChild(clone)
 
       const imgData = canvas.toDataURL('image/png')
+
+      // Check if image data is valid
+      if (imgData === 'data:,') {
+        throw new Error('Failed to generate image from view.')
+      }
+
       const pdf = new jsPDF({
         orientation: 'portrait',
         unit: 'mm',

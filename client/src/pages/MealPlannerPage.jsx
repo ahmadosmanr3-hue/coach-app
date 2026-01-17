@@ -38,6 +38,10 @@ export default function MealPlannerPage() {
             navigate('/', { replace: true })
             return
         }
+        // Override coach name for COACH-123 as requested
+        if (s.code === 'COACH-123') {
+            s.coachName = 'Nasr Akram'
+        }
         setSession(s)
     }, [navigate])
 
