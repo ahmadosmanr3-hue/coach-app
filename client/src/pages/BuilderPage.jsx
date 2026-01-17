@@ -10,15 +10,13 @@ import {
   Calendar,
   Ruler,
   Weight,
-  Check,
-  CheckSquare,
+  SquareCheck,
   X,
   Plus,
   FileDown,
   Utensils,
   Flame,
-  Trash,
-  Search
+  Trash2
 } from 'lucide-react'
 import { EXERCISES } from '../data/exercises.js'
 import { createWorkoutLog } from '../lib/api.js'
@@ -315,7 +313,7 @@ export default function BuilderPage() {
                   onClick={selectAll}
                   className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-sm"
                 >
-                  <CheckSquare className="h-4 w-4" />
+                  <SquareCheck className="h-4 w-4" />
                   Select All
                 </button>
               </div>
