@@ -1,34 +1,6 @@
-# Dependencies
-node_modules/
-*/node_modules/
-
-# Environment variables
+node_modules
 .env
-.env.local
-.env.production
-
-# Build outputs
-dist/
-build/
-
-# Logs
-logs
-*.log
-npm-debug.log*
-
-# Runtime data
-pids
-*.pid
-*.seed
-
-# Coverage directory used by tools like istanbul
-coverage/
-
-# OS generated files
+dist
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+coverage
+.vscode

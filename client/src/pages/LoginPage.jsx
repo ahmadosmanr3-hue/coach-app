@@ -64,7 +64,6 @@ export default function LoginPage() {
               <input
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
-                placeholder="e.g. COACH-123"
                 className="mt-2 w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-slate-100 outline-none ring-0 placeholder:text-slate-600 focus:border-slate-600"
               />
             </div>

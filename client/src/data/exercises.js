@@ -1,4 +1,5 @@
 export const EXERCISES = [
+  // CHEST EXERCISES
   {
     id: 'pushup',
     name: 'Push-Up',
@@ -6,11 +7,73 @@ export const EXERCISES = [
     imageUrl: 'https://placehold.co/600x400/png?text=Push-Up',
   },
   {
-    id: 'squat',
-    name: 'Bodyweight Squat',
-    muscleGroup: 'Legs',
-    imageUrl: 'https://placehold.co/600x400/png?text=Squat',
+    id: 'dip',
+    name: 'Dip',
+    muscleGroup: 'Chest',
+    imageUrl: 'https://placehold.co/600x400/png?text=Dip',
   },
+  {
+    id: 'cablefly',
+    name: 'Cable Fly',
+    muscleGroup: 'Chest',
+    imageUrl: 'https://placehold.co/600x400/png?text=Cable+Fly',
+  },
+  {
+    id: 'inclinepress',
+    name: 'Incline Dumbbell Press',
+    muscleGroup: 'Chest',
+    imageUrl: 'https://placehold.co/600x400/png?text=Incline+Press',
+  },
+  {
+    id: 'declinepress',
+    name: 'Decline Dumbbell Press',
+    muscleGroup: 'Chest',
+    imageUrl: 'https://placehold.co/600x400/png?text=Decline+Press',
+  },
+  {
+    id: 'cablecrossover',
+    name: 'Cable Crossover',
+    muscleGroup: 'Chest',
+    imageUrl: 'https://placehold.co/600x400/png?text=Cable+Crossover',
+  },
+  {
+    id: 'pullovers',
+    name: 'Dumbbell Pullover',
+    muscleGroup: 'Chest',
+    imageUrl: 'https://placehold.co/600x400/png?text=Pullover',
+  },
+  {
+    id: 'dumbbellfly',
+    name: 'Dumbbell Fly',
+    muscleGroup: 'Chest',
+    imageUrl: 'https://placehold.co/600x400/png?text=Dumbbell+Fly',
+  },
+  {
+    id: 'benchpress',
+    name: 'Barbell Bench Press',
+    muscleGroup: 'Chest',
+    imageUrl: 'https://placehold.co/600x400/png?text=Bench+Press',
+  },
+  {
+    id: 'inclinebarbellpress',
+    name: 'Incline Barbell Press',
+    muscleGroup: 'Chest',
+    imageUrl: 'https://placehold.co/600x400/png?text=Incline+Barbell',
+  },
+  {
+    id: 'chestpress',
+    name: 'Machine Chest Press',
+    muscleGroup: 'Chest',
+    imageUrl: 'https://placehold.co/600x400/png?text=Chest+Press',
+  },
+  {
+    id: 'pecdeckfly',
+    name: 'Pec Deck Fly',
+    muscleGroup: 'Chest',
+    imageUrl: 'https://placehold.co/600x400/png?text=Pec+Deck',
+  },
+
+  // BACK EXERCISES
   {
     id: 'row',
     name: 'Dumbbell Row',
@@ -18,22 +81,78 @@ export const EXERCISES = [
     imageUrl: 'https://placehold.co/600x400/png?text=Row',
   },
   {
-    id: 'plank',
-    name: 'Plank',
-    muscleGroup: 'Core',
-    imageUrl: 'https://placehold.co/600x400/png?text=Plank',
+    id: 'pullup',
+    name: 'Pull-Up',
+    muscleGroup: 'Back',
+    imageUrl: 'https://placehold.co/600x400/png?text=Pull-Up',
   },
   {
-    id: 'press',
-    name: 'Shoulder Press',
-    muscleGroup: 'Shoulders',
-    imageUrl: 'https://placehold.co/600x400/png?text=Press',
+    id: 'latpulldown',
+    name: 'Lat Pulldown',
+    muscleGroup: 'Back',
+    imageUrl: 'https://placehold.co/600x400/png?text=Lat+Pulldown',
   },
   {
-    id: 'curl',
-    name: 'Bicep Curl',
-    muscleGroup: 'Arms',
-    imageUrl: 'https://placehold.co/600x400/png?text=Curl',
+    id: 'tbarrow',
+    name: 'T-Bar Row',
+    muscleGroup: 'Back',
+    imageUrl: 'https://placehold.co/600x400/png?text=T-Bar+Row',
+  },
+  {
+    id: 'seatedrow',
+    name: 'Seated Cable Row',
+    muscleGroup: 'Back',
+    imageUrl: 'https://placehold.co/600x400/png?text=Seated+Row',
+  },
+  {
+    id: 'hyperextension',
+    name: 'Hyperextension',
+    muscleGroup: 'Back',
+    imageUrl: 'https://placehold.co/600x400/png?text=Hyperextension',
+  },
+  {
+    id: 'chinup',
+    name: 'Chin-Up',
+    muscleGroup: 'Back',
+    imageUrl: 'https://placehold.co/600x400/png?text=Chin-Up',
+  },
+  {
+    id: 'reversefly',
+    name: 'Reverse Fly',
+    muscleGroup: 'Back',
+    imageUrl: 'https://placehold.co/600x400/png?text=Reverse+Fly',
+  },
+  {
+    id: 'bentoverrow',
+    name: 'Bent Over Barbell Row',
+    muscleGroup: 'Back',
+    imageUrl: 'https://placehold.co/600x400/png?text=Bent+Over+Row',
+  },
+  {
+    id: 'pendlayrow',
+    name: 'Pendlay Row',
+    muscleGroup: 'Back',
+    imageUrl: 'https://placehold.co/600x400/png?text=Pendlay+Row',
+  },
+  {
+    id: 'widegriprow',
+    name: 'Wide Grip Cable Row',
+    muscleGroup: 'Back',
+    imageUrl: 'https://placehold.co/600x400/png?text=Wide+Grip+Row',
+  },
+  {
+    id: 'straightarmlatpulldown',
+    name: 'Straight Arm Lat Pulldown',
+    muscleGroup: 'Back',
+    imageUrl: 'https://placehold.co/600x400/png?text=Straight+Arm',
+  },
+
+  // LEG EXERCISES
+  {
+    id: 'squat',
+    name: 'Bodyweight Squat',
+    muscleGroup: 'Legs',
+    imageUrl: 'https://placehold.co/600x400/png?text=Squat',
   },
   {
     id: 'lunge',
@@ -48,70 +167,10 @@ export const EXERCISES = [
     imageUrl: 'https://placehold.co/600x400/png?text=Deadlift',
   },
   {
-    id: 'pullup',
-    name: 'Pull-Up',
-    muscleGroup: 'Back',
-    imageUrl: 'https://placehold.co/600x400/png?text=Pull-Up',
-  },
-  {
-    id: 'dip',
-    name: 'Dip',
-    muscleGroup: 'Chest',
-    imageUrl: 'https://placehold.co/600x400/png?text=Dip',
-  },
-  {
     id: 'legpress',
     name: 'Leg Press',
     muscleGroup: 'Legs',
     imageUrl: 'https://placehold.co/600x400/png?text=Leg+Press',
-  },
-  {
-    id: 'latpulldown',
-    name: 'Lat Pulldown',
-    muscleGroup: 'Back',
-    imageUrl: 'https://placehold.co/600x400/png?text=Lat+Pulldown',
-  },
-  {
-    id: 'hipthrust',
-    name: 'Hip Thrust',
-    muscleGroup: 'Glutes',
-    imageUrl: 'https://placehold.co/600x400/png?text=Hip+Thrust',
-  },
-  {
-    id: 'cablefly',
-    name: 'Cable Fly',
-    muscleGroup: 'Chest',
-    imageUrl: 'https://placehold.co/600x400/png?text=Cable+Fly',
-  },
-  {
-    id: 'triceppushdown',
-    name: 'Tricep Pushdown',
-    muscleGroup: 'Arms',
-    imageUrl: 'https://placehold.co/600x400/png?text=Tricep+Pushdown',
-  },
-  {
-    id: 'lateralraise',
-    name: 'Lateral Raise',
-    muscleGroup: 'Shoulders',
-    imageUrl: 'https://placehold.co/600x400/png?text=Lateral+Raise',
-  },
-  {
-    id: 'facepull',
-    name: 'Face Pull',
-    muscleGroup: 'Shoulders',
-    imageUrl: 'https://placehold.co/600x400/png?text=Face+Pull',
-  },
-  {
-    id: 'crunch',
-    name: 'Crunch',
-    muscleGroup: 'Core',
-    imageUrl: 'https://placehold.co/600x400/png?text=Crunch',
-  },
-  {
-    id: 'russiantwist',
-    name: 'Russian Twist',
-    muscleGroup: 'Core',
-    imageUrl: 'https://placehold.co/600x400/png?text=Russian+Twist',
   },
   {
     id: 'legcurl',
@@ -136,42 +195,6 @@ export const EXERCISES = [
     name: 'Good Morning',
     muscleGroup: 'Legs',
     imageUrl: 'https://placehold.co/600x400/png?text=Good+Morning',
-  },
-  {
-    id: 'inclinepress',
-    name: 'Incline Dumbbell Press',
-    muscleGroup: 'Chest',
-    imageUrl: 'https://placehold.co/600x400/png?text=Incline+Press',
-  },
-  {
-    id: 'declinepress',
-    name: 'Decline Dumbbell Press',
-    muscleGroup: 'Chest',
-    imageUrl: 'https://placehold.co/600x400/png?text=Decline+Press',
-  },
-  {
-    id: 'cablecrossover',
-    name: 'Cable Crossover',
-    muscleGroup: 'Chest',
-    imageUrl: 'https://placehold.co/600x400/png?text=Cable+Crossover',
-  },
-  {
-    id: 'tbarrow',
-    name: 'T-Bar Row',
-    muscleGroup: 'Back',
-    imageUrl: 'https://placehold.co/600x400/png?text=T-Bar+Row',
-  },
-  {
-    id: 'seatedrow',
-    name: 'Seated Cable Row',
-    muscleGroup: 'Back',
-    imageUrl: 'https://placehold.co/600x400/png?text=Seated+Row',
-  },
-  {
-    id: 'hyperextension',
-    name: 'Hyperextension',
-    muscleGroup: 'Back',
-    imageUrl: 'https://placehold.co/600x400/png?text=Hyperextension',
   },
   {
     id: 'frontsquat',
@@ -228,28 +251,48 @@ export const EXERCISES = [
     imageUrl: 'https://placehold.co/600x400/png?text=Goblet+Squat',
   },
   {
-    id: 'pullovers',
-    name: 'Dumbbell Pullover',
-    muscleGroup: 'Chest',
-    imageUrl: 'https://placehold.co/600x400/png?text=Pullover',
+    id: 'hacksquat',
+    name: 'Hack Squat',
+    muscleGroup: 'Legs',
+    imageUrl: 'https://placehold.co/600x400/png?text=Hack+Squat',
   },
   {
-    id: 'dumbbellfly',
-    name: 'Dumbbell Fly',
-    muscleGroup: 'Chest',
-    imageUrl: 'https://placehold.co/600x400/png?text=Dumbbell+Fly',
+    id: 'romaniandeadlift',
+    name: 'Romanian Deadlift',
+    muscleGroup: 'Legs',
+    imageUrl: 'https://placehold.co/600x400/png?text=Romanian+DL',
   },
   {
-    id: 'chinup',
-    name: 'Chin-Up',
-    muscleGroup: 'Back',
-    imageUrl: 'https://placehold.co/600x400/png?text=Chin-Up',
+    id: 'boxjump',
+    name: 'Box Jump',
+    muscleGroup: 'Legs',
+    imageUrl: 'https://placehold.co/600x400/png?text=Box+Jump',
   },
   {
-    id: 'reversefly',
-    name: 'Reverse Fly',
-    muscleGroup: 'Back',
-    imageUrl: 'https://placehold.co/600x400/png?text=Reverse+Fly',
+    id: 'seatedcalfraise',
+    name: 'Seated Calf Raise',
+    muscleGroup: 'Legs',
+    imageUrl: 'https://placehold.co/600x400/png?text=Seated+Calf',
+  },
+
+  // SHOULDER EXERCISES
+  {
+    id: 'press',
+    name: 'Shoulder Press',
+    muscleGroup: 'Shoulders',
+    imageUrl: 'https://placehold.co/600x400/png?text=Press',
+  },
+  {
+    id: 'lateralraise',
+    name: 'Lateral Raise',
+    muscleGroup: 'Shoulders',
+    imageUrl: 'https://placehold.co/600x400/png?text=Lateral+Raise',
+  },
+  {
+    id: 'facepull',
+    name: 'Face Pull',
+    muscleGroup: 'Shoulders',
+    imageUrl: 'https://placehold.co/600x400/png?text=Face+Pull',
   },
   {
     id: 'shrug',
@@ -268,6 +311,44 @@ export const EXERCISES = [
     name: 'Upright Row',
     muscleGroup: 'Shoulders',
     imageUrl: 'https://placehold.co/600x400/png?text=Upright+Row',
+  },
+  {
+    id: 'frontraise',
+    name: 'Front Raise',
+    muscleGroup: 'Shoulders',
+    imageUrl: 'https://placehold.co/600x400/png?text=Front+Raise',
+  },
+  {
+    id: 'reardeltraise',
+    name: 'Rear Delt Raise',
+    muscleGroup: 'Shoulders',
+    imageUrl: 'https://placehold.co/600x400/png?text=Rear+Delt',
+  },
+  {
+    id: 'militarypress',
+    name: 'Military Press',
+    muscleGroup: 'Shoulders',
+    imageUrl: 'https://placehold.co/600x400/png?text=Military+Press',
+  },
+  {
+    id: 'cablelatraise',
+    name: 'Cable Lateral Raise',
+    muscleGroup: 'Shoulders',
+    imageUrl: 'https://placehold.co/600x400/png?text=Cable+Lateral',
+  },
+
+  // ARM EXERCISES
+  {
+    id: 'curl',
+    name: 'Bicep Curl',
+    muscleGroup: 'Arms',
+    imageUrl: 'https://placehold.co/600x400/png?text=Curl',
+  },
+  {
+    id: 'triceppushdown',
+    name: 'Tricep Pushdown',
+    muscleGroup: 'Arms',
+    imageUrl: 'https://placehold.co/600x400/png?text=Tricep+Pushdown',
   },
   {
     id: 'barbellcurl',
@@ -318,6 +399,50 @@ export const EXERCISES = [
     imageUrl: 'https://placehold.co/600x400/png?text=Skull+Crusher',
   },
   {
+    id: 'cablebicepcurl',
+    name: 'Cable Bicep Curl',
+    muscleGroup: 'Arms',
+    imageUrl: 'https://placehold.co/600x400/png?text=Cable+Curl',
+  },
+  {
+    id: 'ropetricep',
+    name: 'Rope Tricep Extension',
+    muscleGroup: 'Arms',
+    imageUrl: 'https://placehold.co/600x400/png?text=Rope+Tricep',
+  },
+  {
+    id: 'closegripbench',
+    name: 'Close Grip Bench Press',
+    muscleGroup: 'Arms',
+    imageUrl: 'https://placehold.co/600x400/png?text=Close+Grip',
+  },
+  {
+    id: 'ezbarskullcrusher',
+    name: 'EZ Bar Skull Crusher',
+    muscleGroup: 'Arms',
+    imageUrl: 'https://placehold.co/600x400/png?text=EZ+Skull',
+  },
+
+  // CORE EXERCISES
+  {
+    id: 'plank',
+    name: 'Plank',
+    muscleGroup: 'Core',
+    imageUrl: 'https://placehold.co/600x400/png?text=Plank',
+  },
+  {
+    id: 'crunch',
+    name: 'Crunch',
+    muscleGroup: 'Core',
+    imageUrl: 'https://placehold.co/600x400/png?text=Crunch',
+  },
+  {
+    id: 'russiantwist',
+    name: 'Russian Twist',
+    muscleGroup: 'Core',
+    imageUrl: 'https://placehold.co/600x400/png?text=Russian+Twist',
+  },
+  {
     id: 'legraise',
     name: 'Hanging Leg Raise',
     muscleGroup: 'Core',
@@ -354,6 +479,38 @@ export const EXERCISES = [
     imageUrl: 'https://placehold.co/600x400/png?text=Bird-Dog',
   },
   {
+    id: 'mountainclimber',
+    name: 'Mountain Climber',
+    muscleGroup: 'Core',
+    imageUrl: 'https://placehold.co/600x400/png?text=Mountain+Climber',
+  },
+  {
+    id: 'bicyclecrunches',
+    name: 'Bicycle Crunches',
+    muscleGroup: 'Core',
+    imageUrl: 'https://placehold.co/600x400/png?text=Bicycle+Crunch',
+  },
+  {
+    id: 'abwheel',
+    name: 'Ab Wheel Rollout',
+    muscleGroup: 'Core',
+    imageUrl: 'https://placehold.co/600x400/png?text=Ab+Wheel',
+  },
+  {
+    id: 'sideplank',
+    name: 'Side Plank',
+    muscleGroup: 'Core',
+    imageUrl: 'https://placehold.co/600x400/png?text=Side+Plank',
+  },
+
+  // GLUTE EXERCISES
+  {
+    id: 'hipthrust',
+    name: 'Hip Thrust',
+    muscleGroup: 'Glutes',
+    imageUrl: 'https://placehold.co/600x400/png?text=Hip+Thrust',
+  },
+  {
     id: 'glutebridge',
     name: 'Glute Bridge',
     muscleGroup: 'Glutes',
@@ -382,5 +539,347 @@ export const EXERCISES = [
     name: 'Clamshell',
     muscleGroup: 'Glutes',
     imageUrl: 'https://placehold.co/600x400/png?text=Clamshell',
+  },
+  {
+    id: 'singleleghipthrust',
+    name: 'Single Leg Hip Thrust',
+    muscleGroup: 'Glutes',
+    imageUrl: 'https://placehold.co/600x400/png?text=Single+Hip+Thrust',
+  },
+  {
+    id: 'glutehamraise',
+    name: 'Glute Ham Raise',
+    muscleGroup: 'Glutes',
+    imageUrl: 'https://placehold.co/600x400/png?text=Glute+Ham',
+  },
+
+  // CARDIO EXERCISES
+  {
+    id: 'treadmillrun',
+    name: 'Treadmill Running',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=Treadmill',
+  },
+  {
+    id: 'cycling',
+    name: 'Stationary Bike',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=Cycling',
+  },
+  {
+    id: 'rowing',
+    name: 'Rowing Machine',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=Rowing',
+  },
+  {
+    id: 'elliptical',
+    name: 'Elliptical',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=Elliptical',
+  },
+  {
+    id: 'jumpingjacks',
+    name: 'Jumping Jacks',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=Jumping+Jacks',
+  },
+  {
+    id: 'burpees',
+    name: 'Burpees',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=Burpees',
+  },
+  {
+    id: 'jumprope',
+    name: 'Jump Rope',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=Jump+Rope',
+  },
+  {
+    id: 'stairclimber',
+    name: 'Stair Climber',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=Stair+Climber',
+  },
+  {
+    id: 'battleropes',
+    name: 'Battle Ropes',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=Battle+Ropes',
+  },
+  {
+    id: 'highknees',
+    name: 'High Knees',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=High+Knees',
+  },
+  {
+    id: 'sprints',
+    name: 'Sprint Intervals',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=Sprints',
+  },
+  {
+    id: 'boxstepups',
+    name: 'Box Step-Ups',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=Box+Steps',
+  },
+  {
+    id: 'kettlebellswing',
+    name: 'Kettlebell Swings',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=KB+Swings',
+  },
+  {
+    id: 'swimming',
+    name: 'Swimming',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=Swimming',
+  },
+  {
+    id: 'skierg',
+    name: 'Ski Erg',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=Ski+Erg',
+  },
+
+  // ADDITIONAL CHEST EXERCISES
+  {
+    id: 'widegripbenchpress',
+    name: 'Wide Grip Bench Press',
+    muscleGroup: 'Chest',
+    imageUrl: 'https://placehold.co/600x400/png?text=Wide+Grip+Bench',
+  },
+  {
+    id: 'svend press',
+    name: 'Svend Press',
+    muscleGroup: 'Chest',
+    imageUrl: 'https://placehold.co/600x400/png?text=Svend+Press',
+  },
+  {
+    id: 'landminepress',
+    name: 'Landmine Press',
+    muscleGroup: 'Chest',
+    imageUrl: 'https://placehold.co/600x400/png?text=Landmine+Press',
+  },
+
+  // ADDITIONAL BACK EXERCISES
+  {
+    id: 'rackpull',
+    name: 'Rack Pull',
+    muscleGroup: 'Back',
+    imageUrl: 'https://placehold.co/600x400/png?text=Rack+Pull',
+  },
+  {
+    id: 'sealrow',
+    name: 'Seal Row',
+    muscleGroup: 'Back',
+    imageUrl: 'https://placehold.co/600x400/png?text=Seal+Row',
+  },
+  {
+    id: 'assistedpullup',
+    name: 'Assisted Pull-Up',
+    muscleGroup: 'Back',
+    imageUrl: 'https://placehold.co/600x400/png?text=Assisted+Pullup',
+  },
+  {
+    id: 'inverted row',
+    name: 'Inverted Row',
+    muscleGroup: 'Back',
+    imageUrl: 'https://placehold.co/600x400/png?text=Inverted+Row',
+  },
+  {
+    id: 'meadowsrow',
+    name: 'Meadows Row',
+    muscleGroup: 'Back',
+    imageUrl: 'https://placehold.co/600x400/png?text=Meadows+Row',
+  },
+
+  // ADDITIONAL LEG EXERCISES
+  {
+    id: 'pistolsquat',
+    name: 'Pistol Squat',
+    muscleGroup: 'Legs',
+    imageUrl: 'https://placehold.co/600x400/png?text=Pistol+Squat',
+  },
+  {
+    id: 'sissy squat',
+    name: 'Sissy Squat',
+    muscleGroup: 'Legs',
+    imageUrl: 'https://placehold.co/600x400/png?text=Sissy+Squat',
+  },
+  {
+    id: 'nordiccurl',
+    name: 'Nordic Hamstring Curl',
+    muscleGroup: 'Legs',
+    imageUrl: 'https://placehold.co/600x400/png?text=Nordic+Curl',
+  },
+  {
+    id: 'walkingdeadlift',
+    name: 'Walking Deadlift',
+    muscleGroup: 'Legs',
+    imageUrl: 'https://placehold.co/600x400/png?text=Walking+Deadlift',
+  },
+  {
+    id: 'wallsit',
+    name: 'Wall Sit',
+    muscleGroup: 'Legs',
+    imageUrl: 'https://placehold.co/600x400/png?text=Wall+Sit',
+  },
+
+  // ADDITIONAL SHOULDER EXERCISES
+  {
+    id: 'cubanpress',
+    name: 'Cuban Press',
+    muscleGroup: 'Shoulders',
+    imageUrl: 'https://placehold.co/600x400/png?text=Cuban+Press',
+  },
+  {
+    id: 'bradforda press',
+    name: 'Bradford Press',
+    muscleGroup: 'Shoulders',
+    imageUrl: 'https://placehold.co/600x400/png?text=Bradford+Press',
+  },
+  {
+    id: 'push press',
+    name: 'Push Press',
+    muscleGroup: 'Shoulders',
+    imageUrl: 'https://placehold.co/600x400/png?text=Push+Press',
+  },
+  {
+    id: 'leanawaylateralraise',
+    name: 'Lean-Away Lateral Raise',
+    muscleGroup: 'Shoulders',
+    imageUrl: 'https://placehold.co/600x400/png?text=Lean+Away+Raise',
+  },
+  {
+    id: 'plateraisetopress',
+    name: 'Plate Raise to Press',
+    muscleGroup: 'Shoulders',
+    imageUrl: 'https://placehold.co/600x400/png?text=Plate+Press',
+  },
+
+  // ADDITIONAL ARM EXERCISES
+  {
+    id: 'drag curl',
+    name: 'Drag Curl',
+    muscleGroup: 'Arms',
+    imageUrl: 'https://placehold.co/600x400/png?text=Drag+Curl',
+  },
+  {
+    id: 'spider curl',
+    name: 'Spider Curl',
+    muscleGroup: 'Arms',
+    imageUrl: 'https://placehold.co/600x400/png?text=Spider+Curl',
+  },
+  {
+    id: 'reversecurl',
+    name: 'Reverse Curl',
+    muscleGroup: 'Arms',
+    imageUrl: 'https://placehold.co/600x400/png?text=Reverse+Curl',
+  },
+  {
+    id: 'jmpress',
+    name: 'JM Press',
+    muscleGroup: 'Arms',
+    imageUrl: 'https://placehold.co/600x400/png?text=JM+Press',
+  },
+  {
+    id: 'tate press',
+    name: 'Tate Press',
+    muscleGroup: 'Arms',
+    imageUrl: 'https://placehold.co/600x400/png?text=Tate+Press',
+  },
+
+  // ADDITIONAL CORE EXERCISES
+  {
+    id: 'dragonFlag',
+    name: 'Dragon Flag',
+    muscleGroup: 'Core',
+    imageUrl: 'https://placehold.co/600x400/png?text=Dragon+Flag',
+  },
+  {
+    id: 'landminerotation',
+    name: 'Landmine Rotation',
+    muscleGroup: 'Core',
+    imageUrl: 'https://placehold.co/600x400/png?text=Landmine+Rotate',
+  },
+  {
+    id: 'deadsug',
+    name: 'Dead Bug',
+    muscleGroup: 'Core',
+    imageUrl: 'https://placehold.co/600x400/png?text=Dead+Bug',
+  },
+  {
+    id: 'hollowhold',
+    name: 'Hollow Body Hold',
+    muscleGroup: 'Core',
+    imageUrl: 'https://placehold.co/600x400/png?text=Hollow+Hold',
+  },
+  {
+    id: 'vstretching',
+    name: 'V-Up',
+    muscleGroup: 'Core',
+    imageUrl: 'https://placehold.co/600x400/png?text=V-Up',
+  },
+
+  // ADDITIONAL GLUTE EXERCISES
+  {
+    id: 'frogpump',
+    name: 'Frog Pump',
+    muscleGroup: 'Glutes',
+    imageUrl: 'https://placehold.co/600x400/png?text=Frog+Pump',
+  },
+  {
+    id: 'banded walklateral',
+    name: 'Banded Lateral Walk',
+    muscleGroup: 'Glutes',
+    imageUrl: 'https://placehold.co/600x400/png?text=Banded+Walk',
+  },
+  {
+    id: 'curtsy lunge',
+    name: 'Curtsy Lunge',
+    muscleGroup: 'Glutes',
+    imageUrl: 'https://placehold.co/600x400/png?text=Curtsy+Lunge',
+  },
+  {
+    id: 'sumo squat',
+    name: 'Sumo Squat',
+    muscleGroup: 'Glutes',
+    imageUrl: 'https://placehold.co/600x400/png?text=Sumo+Squat',
+  },
+
+  // ADDITIONAL CARDIO EXERCISES
+  {
+    id: 'shadowboxing',
+    name: 'Shadow Boxing',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=Shadow+Boxing',
+  },
+  {
+    id: 'assault bike',
+    name: 'Assault Bike',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=Assault+Bike',
+  },
+  {
+    id: 'bear crawl',
+    name: 'Bear Crawl',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=Bear+Crawl',
+  },
+  {
+    id: 'sled push',
+    name: 'Sled Push',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=Sled+Push',
+  },
+  {
+    id: 'sled pull',
+    name: 'Sled Pull',
+    muscleGroup: 'Cardio',
+    imageUrl: 'https://placehold.co/600x400/png?text=Sled+Pull',
   },
 ]

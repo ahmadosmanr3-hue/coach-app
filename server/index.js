@@ -5,11 +5,15 @@ import { createClient } from '@supabase/supabase-js'
 
 const { SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, PORT } = process.env
 
-if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+// Temporary hardcoded values
+const supabaseUrl = SUPABASE_URL || 'https://vvxuersifqewbxaowqnj.supabase.co'
+const supabaseKey = SUPABASE_SERVICE_ROLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ2eHVlcnNpZnFld2J4YW93cW5qIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2ODMwNDExNywiZXhwIjoyMDgzODgwMTE3fQ.G1XBYUkpeESO-TGUZDSoLEQy4w9CWWS8UdAAaSlepe4'
+
+if (!supabaseUrl || !supabaseKey) {
   throw new Error('Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY in server environment')
 }
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
+const supabase = createClient(supabaseUrl, supabaseKey)
 
 const app = express()
 app.use(cors())
@@ -71,7 +75,7 @@ app.post('/api/login', async (req, res) => {
 
 app.post('/api/workout-logs', requireCoach, async (req, res) => {
   console.log('Received request body:', JSON.stringify(req.body, null, 2))
-  
+
   const coach_code = (req.body?.coach_code || '').trim()
   const client_name = (req.body?.client_name || '').trim()
   const client_gender = (req.body?.client_gender || '').trim()
@@ -158,6 +162,10 @@ app.delete('/api/workout-logs', requireAdmin, async (req, res) => {
   res.json({ deleted: true })
 })
 
-app.listen(Number(PORT) || 3001, () => {
-  console.log(`API listening on http://localhost:${Number(PORT) || 3001}`)
-})
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(Number(PORT) || 3001, () => {
+    console.log(`API listening on http://localhost:${Number(PORT) || 3001}`)
+  })
+}
+
+export default app
