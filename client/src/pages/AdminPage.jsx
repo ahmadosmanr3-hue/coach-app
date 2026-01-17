@@ -16,18 +16,29 @@ export default function AdminPage() {
     const grouped = {}
     logs.forEach((row) => {
       const coach = row.coach_code || 'Unknown'
-      if (!grouped[coach]) grouped[coach] = []
-      grouped[coach].push(row)
+      if (!grouped[coach]) grouped[coach] = { workouts: [], mealPlans: [] }
+
+      const isMealPlan = row.course_name?.startsWith('[MEAL PLAN]') ||
+        (Array.isArray(row.exercises_json) && row.exercises_json[0]?.id === 'meal-plan')
+
+      if (isMealPlan) {
+        grouped[coach].mealPlans.push(row)
+      } else {
+        grouped[coach].workouts.push(row)
+      }
     })
     return grouped
   }, [logs])
 
   const coachSummaries = useMemo(() => {
-    return Object.entries(logsByCoach).map(([coachCode, coachLogs]) => ({
-      coachCode,
-      workouts: coachLogs.length,
-      commission: coachLogs.reduce((sum, row) => sum + (row.commission_amount || 0), 0),
-    }))
+    return Object.entries(logsByCoach).map(([coachCode, { workouts, mealPlans }]) => {
+      const allLogs = [...workouts, ...mealPlans]
+      return {
+        coachCode,
+        workouts: allLogs.length,
+        commission: allLogs.reduce((sum, row) => sum + (row.commission_amount || 0), 0),
+      }
+    })
   }, [logsByCoach])
 
   const totalCommissionOwed = useMemo(() => logs.reduce((sum, row) => sum + (row.commission_amount || 0), 0), [logs])
@@ -138,50 +149,90 @@ export default function AdminPage() {
           <div className="bg-slate-900/40 px-4 py-3 text-sm font-semibold">Workout Logs by Coach</div>
           <div className="divide-y divide-slate-800">
             {Object.keys(logsByCoach).length === 0 ? (
-              <div className="px-4 py-6 text-sm text-slate-400">No workouts found.</div>
+              <div className="px-4 py-6 text-sm text-slate-400">No logs found.</div>
             ) : (
-              Object.entries(logsByCoach).map(([coachCode, coachLogs]) => (
+              Object.entries(logsByCoach).map(([coachCode, { workouts, mealPlans }]) => (
                 <div key={coachCode} className="px-4 py-4">
                   <div className="mb-3 flex items-center justify-between">
                     <div className="text-sm font-semibold">Coach: {coachCode}</div>
-                    <div className="text-xs text-slate-500">{coachLogs.length} workout{coachLogs.length !== 1 ? 's' : ''}</div>
+                    <div className="text-xs text-slate-500">
+                      {workouts.length} workout{workouts.length !== 1 ? 's' : ''}, {mealPlans.length} meal plan{mealPlans.length !== 1 ? 's' : ''}
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    {coachLogs.map((row) => (
-                      <div key={row.id} className="grid grid-cols-1 gap-2 rounded-lg border border-slate-700 bg-slate-900/20 px-3 py-2 md:grid-cols-6">
-                        <div>
-                          <div className="text-xs text-slate-500">Created</div>
-                          <div className="text-sm">{row.created_at ? new Date(row.created_at).toLocaleString() : '—'}</div>
-                        </div>
-                        <div>
-                          <div className="text-xs text-slate-500">Course / Plan</div>
-                          <div className="text-sm font-medium text-indigo-400">{row.course_name || '—'}</div>
-                        </div>
-                        <div>
-                          <div className="text-xs text-slate-500">Client</div>
-                          <div className="text-sm">{row.client_name || '—'}</div>
-                        </div>
-                        <div>
-                          <div className="text-xs text-slate-500">Gender</div>
-                          <div className="text-sm">{row.client_gender || '—'}</div>
-                        </div>
-                        <div>
-                          <div className="text-xs text-slate-500">Age / H / W</div>
-                          <div className="text-sm">
-                            {row.client_age ? `${row.client_age}y` : '—'}
-                            {row.client_height_cm ? ` / ${row.client_height_cm}cm` : ''}
-                            {row.client_weight_kg ? ` / ${row.client_weight_kg}kg` : ''}
+
+                  {/* WORKOUTS SECTION */}
+                  {workouts.length > 0 && (
+                    <div className="mb-4">
+                      <div className="mb-2 text-xs font-semibold text-indigo-400 uppercase tracking-wider">Workouts</div>
+                      <div className="space-y-2">
+                        {workouts.map((row) => (
+                          <div key={row.id} className="grid grid-cols-1 gap-2 rounded-lg border border-slate-700 bg-slate-900/20 px-3 py-2 md:grid-cols-6">
+                            <div>
+                              <div className="text-xs text-slate-500">Created</div>
+                              <div className="text-sm">{row.created_at ? new Date(row.created_at).toLocaleString() : '—'}</div>
+                            </div>
+                            <div>
+                              <div className="text-xs text-slate-500">Course / Plan</div>
+                              <div className="text-sm font-medium text-slate-200">{row.course_name || '—'}</div>
+                            </div>
+                            <div>
+                              <div className="text-xs text-slate-500">Client</div>
+                              <div className="text-sm">{row.client_name || '—'}</div>
+                            </div>
+                            <div>
+                              <div className="text-xs text-slate-500">Gender</div>
+                              <div className="text-sm">{row.client_gender || '—'}</div>
+                            </div>
+                            <div>
+                              <div className="text-xs text-slate-500">Age / H / W</div>
+                              <div className="text-sm">
+                                {row.client_age ? `${row.client_age}y` : '—'}
+                                {row.client_height_cm ? ` / ${row.client_height_cm}cm` : ''}
+                                {row.client_weight_kg ? ` / ${row.client_weight_kg}kg` : ''}
+                              </div>
+                            </div>
+                            <div>
+                              <div className="text-xs text-slate-500">Exercises</div>
+                              <div className="text-sm">
+                                {Array.isArray(row.exercises_json) ? row.exercises_json.length : row.exercises_json ? '1+' : '0'}
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                        <div>
-                          <div className="text-xs text-slate-500">Exercises</div>
-                          <div className="text-sm">
-                            {Array.isArray(row.exercises_json) ? row.exercises_json.length : row.exercises_json ? '1+' : '0'}
-                          </div>
-                        </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  )}
+
+                  {/* MEAL PLANS SECTION */}
+                  {mealPlans.length > 0 && (
+                    <div>
+                      <div className="mb-2 text-xs font-semibold text-emerald-400 uppercase tracking-wider">Meal Plans</div>
+                      <div className="space-y-2">
+                        {mealPlans.map((row) => (
+                          <div key={row.id} className="grid grid-cols-1 gap-2 rounded-lg border border-slate-700 bg-slate-900/20 px-3 py-2 md:grid-cols-5">
+                            <div>
+                              <div className="text-xs text-slate-500">Created</div>
+                              <div className="text-sm">{row.created_at ? new Date(row.created_at).toLocaleString() : '—'}</div>
+                            </div>
+                            <div className="md:col-span-2">
+                              <div className="text-xs text-slate-500">Plan Name</div>
+                              <div className="text-sm font-medium text-emerald-200">{row.course_name.replace('[MEAL PLAN] ', '') || '—'}</div>
+                            </div>
+                            <div>
+                              <div className="text-xs text-slate-500">Client</div>
+                              <div className="text-sm">{row.client_name || '—'}</div>
+                            </div>
+                            <div>
+                              <div className="text-xs text-slate-500">Details</div>
+                              <div className="text-sm text-slate-400">
+                                {row.client_gender}, {row.client_age}y
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))
             )}
