@@ -148,10 +148,14 @@ export default function AdminPage() {
                   </div>
                   <div className="space-y-2">
                     {coachLogs.map((row) => (
-                      <div key={row.id} className="grid grid-cols-1 gap-2 rounded-lg border border-slate-700 bg-slate-900/20 px-3 py-2 md:grid-cols-5">
+                      <div key={row.id} className="grid grid-cols-1 gap-2 rounded-lg border border-slate-700 bg-slate-900/20 px-3 py-2 md:grid-cols-6">
                         <div>
                           <div className="text-xs text-slate-500">Created</div>
                           <div className="text-sm">{row.created_at ? new Date(row.created_at).toLocaleString() : '—'}</div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-slate-500">Course / Plan</div>
+                          <div className="text-sm font-medium text-indigo-400">{row.course_name || '—'}</div>
                         </div>
                         <div>
                           <div className="text-xs text-slate-500">Client</div>
@@ -162,7 +166,7 @@ export default function AdminPage() {
                           <div className="text-sm">{row.client_gender || '—'}</div>
                         </div>
                         <div>
-                          <div className="text-xs text-slate-500">Age / Height / Weight</div>
+                          <div className="text-xs text-slate-500">Age / H / W</div>
                           <div className="text-sm">
                             {row.client_age ? `${row.client_age}y` : '—'}
                             {row.client_height_cm ? ` / ${row.client_height_cm}cm` : ''}

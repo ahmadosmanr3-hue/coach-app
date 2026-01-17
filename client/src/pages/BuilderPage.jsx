@@ -43,9 +43,7 @@ export default function BuilderPage() {
   const [newExerciseMuscleGroup, setNewExerciseMuscleGroup] = useState('Chest')
   const [newExerciseImageUrl, setNewExerciseImageUrl] = useState('')
 
-  const { toPDF, targetRef } = usePDF({
-    filename: `${(clientName || 'workout').replaceAll(' ', '-')}.pdf`,
-  })
+
 
   useEffect(() => {
     const s = getSession()

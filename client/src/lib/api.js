@@ -1,11 +1,11 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
 
 async function request(path, { method = 'GET', headers = {}, body } = {}) {
   const url = `${API_BASE_URL}${path}`
   console.log('Making request to:', url)
   console.log('Method:', method)
   console.log('Body:', body)
-  
+
   const res = await fetch(url, {
     method,
     headers: {
