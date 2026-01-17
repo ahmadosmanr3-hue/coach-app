@@ -155,7 +155,9 @@ app.delete('/api/workout-logs', requireAdmin, async (req, res) => {
   const { error } = await supabase
     .from('workout_logs')
     .delete()
-    .neq('id', -1) // delete all rows
+    // Using a filter is required by Supabase for key-less deletes.
+    // Assuming 'id' is a serial integer, deleting anything with ID > 0 wipes the table.
+    .gt('id', 0)
 
   if (error) return res.status(500).json({ error: error.message })
 

@@ -128,6 +128,11 @@ export default function AdminPage() {
 
       <main className="mx-auto w-full max-w-6xl px-6 py-6">
         <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {error && (
+            <div className="rounded-2xl border border-red-800 bg-red-900/20 p-4 text-red-200 md:col-span-2 lg:col-span-3">
+              Error: {error}
+            </div>
+          )}
           {coachSummaries.map(({ coachCode, workouts, commission }) => (
             <div key={coachCode} className="rounded-2xl border border-slate-800 bg-slate-900/40 p-4">
               <div className="text-xs text-slate-400">{coachCode}</div>
