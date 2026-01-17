@@ -1,11 +1,10 @@
-import { useEffect, useState, useRef, useMemo } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import html2canvas from 'html2canvas'
 import jsPDF from 'jspdf'
 import {
   Dumbbell,
   LogOut,
-  Search,
   User,
   Calendar,
   Ruler,
@@ -15,7 +14,6 @@ import {
   Plus,
   FileDown,
   Utensils,
-  Flame,
   Trash2
 } from 'lucide-react'
 import { EXERCISES } from '../data/exercises.js'
