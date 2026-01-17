@@ -14,7 +14,9 @@ import {
   Plus,
   FileDown,
   Utensils,
-  Trash2
+  Trash2,
+  ArrowUp,
+  ArrowDown
 } from 'lucide-react'
 import { EXERCISES } from '../data/exercises.js'
 import { createWorkoutLog } from '../lib/api.js'
@@ -38,6 +40,7 @@ export default function BuilderPage() {
     weight: ''
   })
   const [courseName, setCourseName] = useState('')
+  const [workoutDay, setWorkoutDay] = useState('Chest Day')
 
   // Exercises
   const [selected, setSelected] = useState([]) // Array of exercise objects with sets/reps
@@ -57,6 +60,10 @@ export default function BuilderPage() {
     if (!s || s.role !== 'coach') {
       navigate('/', { replace: true })
       return
+    }
+    // Override coach name for COACH-123 as requested
+    if (s.code === 'COACH-123') {
+      s.coachName = 'Nasr Akram'
     }
     setSession(s)
     setLoading(false)
@@ -86,6 +93,7 @@ export default function BuilderPage() {
   // --- LOGIC ---
 
   const muscleGroups = ['All', 'Chest', 'Back', 'Legs', 'Shoulders', 'Arms', 'Core', 'Glutes', 'Cardio']
+  const dayTypes = ['Chest Day', 'Leg Day', 'Push Day', 'Pull Day', 'Back Day', 'Full Body', 'Cardio Day', 'Rest Day']
 
   const allExercises = useMemo(() => [...EXERCISES, ...customExercises], [customExercises])
 
@@ -133,6 +141,14 @@ export default function BuilderPage() {
     }
   }
 
+  function scrollToBottom() {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+  }
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   async function generateAndSave() {
     setStatus('')
     if (!client.name || !courseName) {
@@ -148,18 +164,18 @@ export default function BuilderPage() {
     try {
       // 1. Generate PDF
       const element = pdfRef.current
-      // Ensure the element is visible for html2canvas (it might need to be temporarily visible if hidden)
-      // Since it's hidden with 'hidden' class, we might need a workaround or ensure it's rendered off-screen but visible to DOM
-      // For this implementation, we'll assume the CSS handles it or we toggle visibility.
-      // A common pattern is absolute positioning off-screen instead of display: none
+      // Improve visibility for capture to avoid "wrong signature" error (often due to empty/transparent input)
       element.style.display = 'block'
-      element.style.position = 'absolute'
-      element.style.left = '-9999px'
+      element.style.position = 'fixed'
+      element.style.left = '0'
+      element.style.top = '0'
+      element.style.zIndex = '-9999'
 
       const canvas = await html2canvas(element, {
         scale: 2,
         useCORS: true,
-        logging: false
+        logging: false,
+        backgroundColor: '#ffffff' // Force white background
       })
 
       // Cleanup style
@@ -185,7 +201,7 @@ export default function BuilderPage() {
         client_age: Number(client.age) || null,
         client_height_cm: Number(client.height) || null,
         client_weight_kg: Number(client.weight) || null,
-        course_name: courseName,
+        course_name: `${courseName} - ${workoutDay}`,
         exercises_json: selected
       })
 
@@ -211,14 +227,24 @@ export default function BuilderPage() {
   if (loading) return <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center">Loading...</div>
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans relative">
+      {/* Scroll Controls */}
+      <div className="fixed bottom-6 right-6 flex flex-col gap-2 z-50">
+        <button onClick={scrollToTop} className="p-3 bg-slate-800 hover:bg-slate-700 rounded-full shadow-lg border border-slate-700 transition-colors">
+          <ArrowUp className="w-5 h-5" />
+        </button>
+        <button onClick={scrollToBottom} className="p-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-full shadow-lg transition-colors">
+          <ArrowDown className="w-5 h-5" />
+        </button>
+      </div>
+
       {/* HEADER */}
       <header className="border-b border-slate-800 bg-slate-950/60 sticky top-0 z-10 backdrop-blur-md">
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-6">
             <div>
               <div className="text-lg font-semibold tracking-tight">Workout Builder</div>
-              <div className="text-xs text-slate-400 font-mono">Coach: {session?.code}</div>
+              <div className="text-xs text-slate-400 font-mono">Coach: {session?.coachName || session?.code}</div>
             </div>
             <button
               onClick={() => navigate('/meal-planner')}
@@ -246,7 +272,7 @@ export default function BuilderPage() {
           {/* Client Details Form */}
           <section className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6">
             <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">Client Details</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
               <div>
                 <label className="text-xs text-slate-500 mb-1 block">Course Name</label>
                 <input
@@ -255,6 +281,16 @@ export default function BuilderPage() {
                   value={courseName}
                   onChange={e => setCourseName(e.target.value)}
                 />
+              </div>
+              <div>
+                <label className="text-xs text-slate-500 mb-1 block">Workout Day</label>
+                <select
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-indigo-500 outline-none"
+                  value={workoutDay}
+                  onChange={e => setWorkoutDay(e.target.value)}
+                >
+                  {dayTypes.map(day => <option key={day} value={day}>{day}</option>)}
+                </select>
               </div>
               <div>
                 <label className="text-xs text-slate-500 mb-1 block">Client Name</label>
