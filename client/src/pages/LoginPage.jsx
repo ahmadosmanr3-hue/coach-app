@@ -36,7 +36,7 @@ export default function LoginPage() {
       }
 
       setSession({ role: 'coach', code: result.code, coachName: result.coach_name || '' })
-      navigate('/builder', { replace: true })
+      navigate('/onboarding', { replace: true })
     } catch (err) {
       setError(err?.message || 'Login failed')
     } finally {

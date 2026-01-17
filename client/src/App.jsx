@@ -4,12 +4,14 @@ import LoginPage from './pages/LoginPage.jsx'
 import BuilderPage from './pages/BuilderPage.jsx'
 import AdminPage from './pages/AdminPage.jsx'
 import MealPlannerPage from './pages/MealPlannerPage.jsx'
+import OnboardingPage from './pages/OnboardingPage.jsx'
 
 function App() {
   return (
     <ErrorBoundary>
       <Routes>
         <Route path="/" element={<LoginPage />} />
+        <Route path="/onboarding" element={<OnboardingPage />} />
         <Route path="/builder" element={<BuilderPage />} />
         <Route path="/meal-planner" element={<MealPlannerPage />} />
         <Route path="/admin" element={<AdminPage />} />
