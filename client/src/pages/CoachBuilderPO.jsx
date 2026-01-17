@@ -9,14 +9,14 @@ import {
   Calendar,
   Ruler,
   Weight,
-  SquareCheck,
   X,
   Plus,
   FileDown,
   Utensils,
   Trash2,
   ArrowUp,
-  ArrowDown
+  ArrowDown,
+  Check
 } from 'lucide-react'
 import { EXERCISES } from '../data/exercises.js'
 import { createWorkoutLog } from '../lib/api.js'
@@ -390,7 +390,7 @@ export default function BuilderPage() {
                       <img src={ex.imageUrl} alt={ex.name} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
                       {isSelected && (
                         <div className="absolute inset-0 flex items-center justify-center bg-indigo-900/60 backdrop-blur-sm">
-                          <SquareCheck className="w-8 h-8 text-white" />
+                          <Check className="w-8 h-8 text-white" />
                         </div>
                       )}
                       {ex.isCustom && (
