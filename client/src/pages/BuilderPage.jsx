@@ -11,10 +11,14 @@ import {
   Ruler,
   Weight,
   Check,
+  CheckSquare,
   X,
   Plus,
   FileDown,
-  Utensils
+  Utensils,
+  Flame,
+  Trash,
+  Search
 } from 'lucide-react'
 import { EXERCISES } from '../data/exercises.js'
 import { createWorkoutLog } from '../lib/api.js'
