@@ -99,6 +99,7 @@ export default function AdminPage() {
             <div className="text-xs text-slate-400">Protected by ADMIN-99</div>
           </div>
           <div className="flex items-center gap-2">
+            {/* 
             <button
               onClick={handleResetAll}
               disabled={resetting || loading}
@@ -106,7 +107,8 @@ export default function AdminPage() {
             >
               <Trash2 className="h-4 w-4" />
               {resetting ? 'Resetting…' : 'Reset All'}
-            </button>
+            </button> 
+            */}
             <button
               onClick={load}
               disabled={loading}
