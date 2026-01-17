@@ -152,16 +152,28 @@ app.get('/api/workout-logs', requireAdmin, async (req, res) => {
 })
 
 app.delete('/api/workout-logs', requireAdmin, async (req, res) => {
-  const { error } = await supabase
+  // 1. Fetch all IDs first to avoid "delete without filter" issues
+  const { data: rows, error: fetchError } = await supabase
+    .from('workout_logs')
+    .select('id')
+
+  if (fetchError) return res.status(500).json({ error: 'Fetch failed: ' + fetchError.message })
+
+  if (!rows || rows.length === 0) {
+    return res.json({ deleted: true, count: 0 })
+  }
+
+  const ids = rows.map((r) => r.id)
+
+  // 2. Delete explicitly by ID list
+  const { error: deleteError } = await supabase
     .from('workout_logs')
     .delete()
-    // Using a filter is required by Supabase for key-less deletes.
-    // Assuming 'id' is a serial integer, deleting anything with ID > 0 wipes the table.
-    .gt('id', 0)
+    .in('id', ids)
 
-  if (error) return res.status(500).json({ error: error.message })
+  if (deleteError) return res.status(500).json({ error: 'Delete failed: ' + deleteError.message })
 
-  res.json({ deleted: true })
+  res.json({ deleted: true, count: ids.length })
 })
 
 if (process.env.NODE_ENV !== 'production') {
