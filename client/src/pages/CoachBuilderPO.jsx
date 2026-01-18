@@ -23,7 +23,6 @@ import { createWorkoutLog } from '../lib/api.js'
 import { clearSession, getSession } from '../lib/session.js'
 
 export default function BuilderPage() {
-  // Force Rebuild 1
   const navigate = useNavigate()
   const pdfRef = useRef(null) // Ref for the PDF generation target
 
