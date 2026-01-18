@@ -99,7 +99,10 @@ app.post('/api/workout-logs', requireCoach, async (req, res) => {
   if (typeof client_age !== 'number' || client_age < 1) return res.status(400).json({ error: 'client_age must be a positive number' })
   if (typeof client_height_cm !== 'number' || client_height_cm < 1) return res.status(400).json({ error: 'client_height_cm must be a positive number' })
   if (typeof client_weight_kg !== 'number' || client_weight_kg < 1) return res.status(400).json({ error: 'client_weight_kg must be a positive number' })
-  if (!Array.isArray(exercises_json)) return res.status(400).json({ error: 'exercises_json must be an array' })
+
+  // Relax validation to support both legacy array format and new 3-day object format
+  const isExercisesValid = Array.isArray(exercises_json) || (typeof exercises_json === 'object' && exercises_json !== null)
+  if (!isExercisesValid) return res.status(400).json({ error: 'exercises_json must be an array or object' })
 
   if (coach_code !== req.coach.code) {
     return res.status(403).json({ error: 'coach_code must match your access code' })
@@ -115,10 +118,15 @@ app.post('/api/workout-logs', requireCoach, async (req, res) => {
 
   const commission_amount = coachData.commission_per_workout || 2
 
+  // Safe logging for both array and object structures
+  const exerciseCount = Array.isArray(exercises_json)
+    ? exercises_json.length
+    : Object.values(exercises_json).reduce((sum, d) => sum + (Array.isArray(d) ? d.length : 0), 0)
+
   console.log('Creating workout log:', {
     coach_code,
     client_name,
-    exercises_json: exercises_json.length + ' exercises',
+    exercises_count: exerciseCount,
     commission_amount,
     course_name,
   })
