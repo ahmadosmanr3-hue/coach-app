@@ -112,8 +112,16 @@ export default function MealPlannerPage() {
 
         const targetProtein = Math.round(weight * proteinMultiplier)
 
-        setCalorieTarget(`${targetCalories} kcal | ${targetProtein}g Protein`)
-        setStatus(`Calculated: ${targetCalories} kcal & ${targetProtein}g Protein based on ${activityLevel} activity`)
+        // Calculate Fat (25% of total calories)
+        const fatCalories = targetCalories * 0.25
+        const targetFat = Math.round(fatCalories / 9)
+
+        // Calculate Carbs (remaining calories)
+        const proteinCalories = targetProtein * 4
+        const targetCarbs = Math.round((targetCalories - proteinCalories - fatCalories) / 4)
+
+        setCalorieTarget(`${targetCalories} kcal | P: ${targetProtein}g | C: ${targetCarbs}g | F: ${targetFat}g`)
+        setStatus(`Calculated: ${targetCalories} kcal (P:${targetProtein}g, C:${targetCarbs}g, F:${targetFat}g)`)
     }
 
     function logout() {
@@ -186,27 +194,9 @@ export default function MealPlannerPage() {
             pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight)
             pdf.save(`${clientName.replaceAll(' ', '-')}.pdf`)
 
-            // Log the meal plan so it shows up in Admin dashboard
-            await createWorkoutLog(session.code, {
-                coach_code: session.code,
-                client_name: clientName,
-                client_gender: clientGender,
-                client_age: Number(clientAge),
-                client_height_cm: Number(clientHeight),
-                client_weight_kg: Number(clientWeight),
-                course_name: `[MEAL PLAN] ${courseName}`,
-                exercises_json: [{
-                    id: 'meal-plan',
-                    name: 'Custom Meal Plan',
-                    muscleGroup: 'Nutrition',
-                    imageUrl: '',
-                    sets: 1,
-                    reps: 1,
-                    isCustom: true
-                }]
-            })
+            setStatus('Meal plan PDF generated successfully!')
 
-            setStatus('Meal plan PDF generated and logged successfully!')
+            // Commission logging removed for Meal Plans as per user request (Meal plans are free)
 
             // Clear form for next meal plan
             setClientName('')

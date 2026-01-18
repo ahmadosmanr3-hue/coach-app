@@ -47,7 +47,10 @@ export default function BuilderPage() {
   const [daysData, setDaysData] = useState({
     1: [],
     2: [],
-    3: []
+    3: [],
+    4: [],
+    5: [],
+    6: []
   })
   const [customExercises, setCustomExercises] = useState([])
 
@@ -253,7 +256,8 @@ export default function BuilderPage() {
         client_height_cm: Number(client.height) || null,
         client_weight_kg: Number(client.weight) || null,
         course_name: courseName,
-        exercises_json: daysData
+        exercises_json: daysData,
+        commission_amount: 2 // explicitly set to $2 as requested
       })
 
       // 3. Trigger Download
@@ -354,12 +358,12 @@ export default function BuilderPage() {
               </div>
               <div>
                 <label className="text-xs text-slate-500 mb-1 block">Workout Schedule</label>
-                <div className="flex bg-slate-950 border border-slate-800 rounded-lg p-1">
-                  {[1, 2, 3].map(d => (
+                <div className="flex bg-slate-950 border border-slate-800 rounded-lg p-1 overflow-x-auto">
+                  {[1, 2, 3, 4, 5, 6].map(d => (
                     <button
                       key={d}
                       onClick={() => setActiveDay(d)}
-                      className={`flex-1 py-1.5 px-3 rounded-md text-xs font-medium transition-all ${activeDay === d ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-300'}`}
+                      className={`flex-1 py-1.5 px-3 rounded-md text-xs font-medium transition-all whitespace-nowrap ${activeDay === d ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-300'}`}
                     >
                       Day {d}
                     </button>
@@ -542,7 +546,7 @@ export default function BuilderPage() {
                 ) : (
                   <>
                     <FileDown className="w-4 h-4" />
-                    Generate 3-Day PDF
+                    Generate 6-Day PDF
                   </>
                 )}
               </button>
@@ -580,6 +584,15 @@ export default function BuilderPage() {
                     <option key={g} value={g}>{g}</option>
                   ))}
                 </select>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-slate-400 mb-1">Image URL (Optional)</label>
+                <input
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:border-indigo-500 outline-none"
+                  value={newCustom.imageUrl || ''}
+                  onChange={e => setNewCustom({ ...newCustom, imageUrl: e.target.value })}
+                  placeholder="https://example.com/image.jpg"
+                />
               </div>
             </div>
             <div className="flex gap-3 mt-6">
@@ -631,7 +644,7 @@ export default function BuilderPage() {
             </div>
           </div>
 
-          {[1, 2, 3].map(dayNum => {
+          {[1, 2, 3, 4, 5, 6].map(dayNum => {
             const dayExercises = daysData[dayNum]
             if (dayExercises.length === 0) return null
 
@@ -640,24 +653,32 @@ export default function BuilderPage() {
                 <table className="w-full border-collapse border-2 border-black">
                   <thead>
                     <tr className="bg-white">
-                      <th className="border-2 border-black p-1 text-sm font-bold w-16">Rest</th>
-                      <th className="border-2 border-black p-1 text-sm font-bold w-20">Reps</th>
-                      <th className="border-2 border-black p-1 text-sm font-bold w-12">Set</th>
+                      <th className="border-2 border-black p-1 text-sm font-bold w-12 text-center">PHOTO</th>
+                      <th className="border-2 border-black p-1 text-sm font-bold w-16">REST</th>
+                      <th className="border-2 border-black p-1 text-sm font-bold w-20">REPS</th>
+                      <th className="border-2 border-black p-1 text-sm font-bold w-12">SET</th>
                       <th className="border-2 border-black p-1 text-left relative overflow-hidden">
                         <div className="absolute left-0 top-0 bottom-0 bg-black text-white px-2 py-1 flex items-center text-xs font-bold italic">
                           DAY {dayNum}
                         </div>
-                        <div className="pl-16 text-sm font-bold">Exercise</div>
+                        <div className="pl-16 text-sm font-bold uppercase">Exercise</div>
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     {dayExercises.map((ex, i) => (
-                      <tr key={i} className="h-9">
-                        <td className="border-2 border-black p-1 text-center text-xs">{ex.rest}</td>
-                        <td className="border-2 border-black p-1 text-center text-xs">{ex.reps}</td>
-                        <td className="border-2 border-black p-1 text-center text-xs">{ex.sets}</td>
-                        <td className="border-2 border-black p-2 text-sm font-medium">{ex.name}</td>
+                      <tr key={i} className="h-14">
+                        <td className="border-2 border-black p-1 text-center align-middle">
+                          {ex.imageUrl ? (
+                            <img src={ex.imageUrl} alt="" className="w-10 h-10 mx-auto object-cover rounded shadow-sm" />
+                          ) : (
+                            <div className="w-10 h-10 mx-auto bg-slate-50 flex items-center justify-center text-[8px] text-slate-400 font-bold">N/A</div>
+                          )}
+                        </td>
+                        <td className="border-2 border-black p-1 text-center text-xs font-bold">{ex.rest}</td>
+                        <td className="border-2 border-black p-1 text-center text-xs font-bold">{ex.reps}</td>
+                        <td className="border-2 border-black p-1 text-center text-xs font-bold">{ex.sets}</td>
+                        <td className="border-2 border-black p-2 text-sm font-bold">{ex.name.toUpperCase()}</td>
                       </tr>
                     ))}
                     {/* Add empty rows if needed to match the 12-row look of the image? Optional */}
