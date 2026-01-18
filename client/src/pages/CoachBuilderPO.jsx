@@ -280,6 +280,13 @@ export default function BuilderPage() {
               <Utensils className="h-4 w-4" />
               Meal Planner
             </button>
+            <button
+              onClick={() => navigate('/assessment')}
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-sm hover:bg-slate-800 transition-colors"
+            >
+              <FileDown className="h-4 w-4" />
+              Assessment
+            </button>
           </div>
           <button
             onClick={logout}

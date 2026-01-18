@@ -5,6 +5,7 @@ import CoachBuilderPO from './pages/CoachBuilderPO.jsx'
 import AdminPage from './pages/AdminPage.jsx'
 import MealPlannerPage from './pages/MealPlannerPage.jsx'
 import OnboardingPage from './pages/OnboardingPage.jsx'
+import ClientAssessmentPage from './pages/ClientAssessmentPage.jsx'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/onboarding" element={<OnboardingPage />} />
+        <Route path="/assessment" element={<ClientAssessmentPage />} />
         <Route path="/builder" element={<CoachBuilderPO />} />
         <Route path="/meal-planner" element={<MealPlannerPage />} />
         <Route path="/admin" element={<AdminPage />} />
