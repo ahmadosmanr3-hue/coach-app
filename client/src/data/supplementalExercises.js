@@ -4,35 +4,35 @@ export const SUPPLEMENTAL_EXERCISES = [
         id: 'wristcurl',
         name: 'Dumbbell Wrist Curl',
         muscleGroup: 'Forearms',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Zottman-curl-2.gif/220px-Zottman-curl-2.gif',
+        imageUrl: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Wrist_Curl/images/0.jpg',
         isSupplemental: true
     },
     {
         id: 'reversewristcurl',
         name: 'Reverse Dumbbell Wrist Curl',
         muscleGroup: 'Forearms',
-        imageUrl: 'https://placehold.co/600x400/png?text=Reverse+Wrist+Curl',
+        imageUrl: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Reverse_Wrist_Curl/images/0.jpg',
         isSupplemental: true
     },
     {
         id: 'farmerswalk',
         name: 'Farmer\'s Walk',
         muscleGroup: 'Forearms',
-        imageUrl: 'https://placehold.co/600x400/png?text=Farmers+Walk',
+        imageUrl: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Farmers_Walk/images/0.jpg',
         isSupplemental: true
     },
     {
         id: 'hammercurl_forearms',
         name: 'Hammer Curl (Forearms)',
         muscleGroup: 'Forearms',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bicep-hammer-curl-2.png/220px-Bicep-hammer-curl-2.png',
+        imageUrl: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hammer_Curls/images/0.jpg',
         isSupplemental: true
     },
     {
         id: 'platepinch',
         name: 'Plate Pinch Hold',
         muscleGroup: 'Forearms',
-        imageUrl: 'https://placehold.co/600x400/png?text=Plate+Pinch',
+        imageUrl: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plate_Pinch/images/0.jpg',
         isSupplemental: true
     },
     // UPDATED CORE EXERCISES (WITH REAL PHOTOS)
@@ -40,56 +40,56 @@ export const SUPPLEMENTAL_EXERCISES = [
         id: 'benchpress_real',
         name: 'Barbell Bench Press (Photo)',
         muscleGroup: 'Chest',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Bench_press.png/640px-Bench_press.png',
+        imageUrl: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Bench_Press/images/0.jpg',
         isSupplemental: true
     },
     {
         id: 'squat_real',
-        name: 'Bodyweight Squat (Photo)',
+        name: 'Barbell Squat (Photo)',
         muscleGroup: 'Legs',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Squat.png/640px-Squat.png',
+        imageUrl: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Squat/images/0.jpg',
         isSupplemental: true
     },
     {
         id: 'deadlift_real',
-        name: 'Deadlift (Photo)',
+        name: 'Barbell Deadlift (Photo)',
         muscleGroup: 'Legs',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Deadlift.JPG/640px-Deadlift.JPG',
+        imageUrl: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Deadlift/images/0.jpg',
         isSupplemental: true
     },
     {
         id: 'pushup_real',
         name: 'Push-Up (Photo)',
         muscleGroup: 'Chest',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Push-ups-3-1.png/640px-Push-ups-3-1.png',
+        imageUrl: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pushups/images/0.jpg',
         isSupplemental: true
     },
     {
         id: 'pullup_real',
         name: 'Pull-Up (Photo)',
         muscleGroup: 'Back',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Pullup-1.png/640px-Pullup-1.png',
+        imageUrl: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pullups/images/0.jpg',
         isSupplemental: true
     },
     {
         id: 'bicepcurl_real',
         name: 'Bicep Curl (Photo)',
         muscleGroup: 'Arms',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Bicep-curl-1.png/640px-Bicep-curl-1.png',
+        imageUrl: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Bicep_Curl/images/0.jpg',
         isSupplemental: true
     },
     {
         id: 'shoulderpress_real',
         name: 'Shoulder Press (Photo)',
         muscleGroup: 'Shoulders',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Dumbbell-shoulder-press-1.png/640px-Dumbbell-shoulder-press-1.png',
+        imageUrl: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Shoulder_Press/images/0.jpg',
         isSupplemental: true
     },
     {
         id: 'lateralraise_real',
         name: 'Lateral Raise (Photo)',
         muscleGroup: 'Shoulders',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Dumbbell-lateral-raise-1.png/640px-Dumbbell-lateral-raise-1.png',
+        imageUrl: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lateral_Raise/images/0.jpg',
         isSupplemental: true
     }
 ]
