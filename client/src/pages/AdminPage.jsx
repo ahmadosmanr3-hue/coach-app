@@ -199,7 +199,11 @@ export default function AdminPage() {
                             <div>
                               <div className="text-xs text-slate-500">Exercises</div>
                               <div className="text-sm">
-                                {Array.isArray(row.exercises_json) ? row.exercises_json.length : row.exercises_json ? '1+' : '0'}
+                                {Array.isArray(row.exercises_json)
+                                  ? row.exercises_json.length
+                                  : typeof row.exercises_json === 'object' && row.exercises_json !== null
+                                    ? Object.values(row.exercises_json).reduce((sum, d) => sum + (Array.isArray(d) ? d.length : 0), 0)
+                                    : '0'}
                               </div>
                             </div>
                           </div>
