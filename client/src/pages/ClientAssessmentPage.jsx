@@ -141,8 +141,8 @@ export default function ClientAssessmentPage() {
 
             {/* HEADER */}
             <header className="border-b border-slate-800 bg-slate-950/60 sticky top-0 z-10 backdrop-blur-md">
-                <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-6 py-4">
-                    <div className="flex items-center gap-6">
+                <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between px-4 sm:px-6 py-4 gap-4">
+                    <div className="flex flex-wrap items-center gap-4 sm:gap-6">
                         <button
                             onClick={() => navigate('/builder')}
                             className="text-slate-400 hover:text-white transition-colors"
@@ -153,20 +153,24 @@ export default function ClientAssessmentPage() {
                             <div className="text-lg font-semibold tracking-tight">Client Assessment</div>
                             <div className="text-xs text-slate-400 font-mono">Coach: {session?.coachName || session?.code}</div>
                         </div>
-                        <button
-                            onClick={() => navigate('/builder')}
-                            className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-sm hover:bg-slate-800 transition-colors"
-                        >
-                            <Dumbbell className="h-4 w-4" />
-                            Workout Builder
-                        </button>
-                        <button
-                            onClick={() => navigate('/meal-planner')}
-                            className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-sm hover:bg-slate-800 transition-colors"
-                        >
-                            <Utensils className="h-4 w-4" />
-                            Meal Planner
-                        </button>
+                        <div className="flex gap-2">
+                            <button
+                                onClick={() => navigate('/builder')}
+                                className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-[13px] hover:bg-slate-800 transition-colors whitespace-nowrap"
+                            >
+                                <Dumbbell className="h-4 w-4" />
+                                <span className="hidden sm:inline">Workout Builder</span>
+                                <span className="sm:hidden">Workout</span>
+                            </button>
+                            <button
+                                onClick={() => navigate('/meal-planner')}
+                                className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-[13px] hover:bg-slate-800 transition-colors whitespace-nowrap"
+                            >
+                                <Utensils className="h-4 w-4" />
+                                <span className="hidden sm:inline">Meal Planner</span>
+                                <span className="sm:hidden">Meals</span>
+                            </button>
+                        </div>
                     </div>
                     <button
                         onClick={logout}

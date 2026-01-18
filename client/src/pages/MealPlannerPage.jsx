@@ -222,26 +222,30 @@ export default function MealPlannerPage() {
     return (
         <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
             <header className="border-b border-slate-800 bg-slate-950/60 flex-shrink-0">
-                <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-                    <div className="flex items-center gap-6">
+                <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between px-4 sm:px-6 py-4 gap-4">
+                    <div className="flex flex-wrap items-center gap-4 sm:gap-6">
                         <div>
                             <div className="text-lg font-semibold">Meal Planner</div>
                             <div className="text-xs text-slate-400">Coach: {session?.coachName || session?.code}</div>
                         </div>
-                        <button
-                            onClick={() => navigate('/builder')}
-                            className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-sm hover:bg-slate-800/50 transition-colors"
-                        >
-                            <Utensils className="h-4 w-4" />
-                            Workout Builder
-                        </button>
-                        <button
-                            onClick={() => navigate('/assessment')}
-                            className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-sm hover:bg-slate-800/50 transition-colors"
-                        >
-                            <FileDown className="h-4 w-4" />
-                            Assessment
-                        </button>
+                        <div className="flex gap-2">
+                            <button
+                                onClick={() => navigate('/builder')}
+                                className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-[13px] hover:bg-slate-800/50 transition-colors whitespace-nowrap"
+                            >
+                                <Utensils className="h-4 w-4" />
+                                <span className="hidden sm:inline">Workout Builder</span>
+                                <span className="sm:hidden">Workout</span>
+                            </button>
+                            <button
+                                onClick={() => navigate('/assessment')}
+                                className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-[13px] hover:bg-slate-800/50 transition-colors whitespace-nowrap"
+                            >
+                                <FileDown className="h-4 w-4" />
+                                <span className="hidden sm:inline">Assessment</span>
+                                <span className="sm:hidden">Assess</span>
+                            </button>
+                        </div>
                     </div>
                     <button
                         onClick={logout}

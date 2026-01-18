@@ -59,6 +59,7 @@ export default function BuilderPage() {
   const [newCustom, setNewCustom] = useState({ name: '', muscleGroup: 'Chest' })
   const [saving, setSaving] = useState(false)
   const [status, setStatus] = useState('')
+  const [searchTerm, setSearchTerm] = useState('')
 
   // --- EFFECTS ---
 
@@ -119,15 +120,23 @@ export default function BuilderPage() {
 
   // --- LOGIC ---
 
-  const muscleGroups = ['All', 'Chest', 'Back', 'Legs', 'Shoulders', 'Arms', 'Core', 'Glutes', 'Cardio']
+  const muscleGroups = ['All', 'Chest', 'Back', 'Legs', 'Shoulders', 'Arms', 'Forearms', 'Core', 'Glutes', 'Cardio']
   const dayTypes = ['Chest Day', 'Leg Day', 'Push Day', 'Pull Day', 'Back Day', 'Full Body', 'Cardio Day', 'Rest Day']
 
   const allExercises = useMemo(() => [...EXERCISES, ...customExercises], [customExercises])
 
   const filteredExercises = useMemo(() => {
-    if (activeTab === 'All') return allExercises
-    return allExercises.filter(e => e.muscleGroup === activeTab)
-  }, [activeTab, allExercises])
+    let filtered = allExercises
+    if (activeTab !== 'All') {
+      filtered = filtered.filter(e => e.muscleGroup === activeTab)
+    }
+    if (searchTerm.trim()) {
+      filtered = filtered.filter(e =>
+        e.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    }
+    return filtered
+  }, [activeTab, allExercises, searchTerm])
 
   function toggleExercise(exercise) {
     setDaysData(prev => {
@@ -307,8 +316,8 @@ export default function BuilderPage() {
 
       {/* HEADER */}
       <header className="border-b border-slate-800 bg-slate-950/60 sticky top-0 z-10 backdrop-blur-md">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-6">
+        <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between px-4 sm:px-6 py-4 gap-4">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             <div>
               <div className="text-lg font-semibold tracking-tight">Workout Builder</div>
               <div className="text-xs text-slate-400 font-mono">Coach: {session?.coachName || session?.code}</div>
@@ -423,6 +432,16 @@ export default function BuilderPage() {
 
           {/* Exercise Selection */}
           <section>
+            <div className="mb-6">
+              <input
+                type="text"
+                placeholder="Search exercises by name..."
+                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-1 focus:ring-indigo-500 outline-none placeholder:text-slate-600"
+                value={searchTerm}
+                onChange={e => setSearchTerm(e.target.value)}
+              />
+            </div>
+
             <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
               <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
                 {muscleGroups.map(group => (
@@ -499,12 +518,15 @@ export default function BuilderPage() {
               <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
                 {daysData[activeDay].map((ex, idx) => (
                   <div key={ex.id} className="bg-slate-950 border border-slate-800 rounded-xl p-3 group text-slate-200">
-                    <div className="flex justify-between items-start mb-2 text-slate-100">
-                      <div>
-                        <div className="text-xs text-slate-500 mb-0.5">#{idx + 1}</div>
-                        <div className="font-medium text-sm">{ex.name}</div>
+                    <div className="flex gap-3 items-start mb-2 text-slate-100">
+                      <div className="w-12 h-12 flex-shrink-0 bg-slate-900 rounded overflow-hidden">
+                        <img src={ex.imageUrl} alt="" className="w-full h-full object-cover" />
                       </div>
-                      <button onClick={() => toggleExercise(ex)} className="text-slate-600 hover:text-red-400">
+                      <div className="flex-1 min-w-0">
+                        <div className="text-[10px] text-slate-500 mb-0.5">#{idx + 1}</div>
+                        <div className="font-medium text-sm truncate">{ex.name}</div>
+                      </div>
+                      <button onClick={() => toggleExercise(ex)} className="text-slate-600 hover:text-red-400 p-1">
                         <X className="w-4 h-4" />
                       </button>
                     </div>
