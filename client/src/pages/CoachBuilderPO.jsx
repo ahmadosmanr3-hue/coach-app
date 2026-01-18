@@ -19,6 +19,7 @@ import {
   Check
 } from 'lucide-react'
 import { EXERCISES } from '../data/exercises.js'
+import { SUPPLEMENTAL_EXERCISES } from '../data/supplementalExercises.js'
 import { createWorkoutLog } from '../lib/api.js'
 import { clearSession, getSession } from '../lib/session.js'
 
@@ -123,7 +124,12 @@ export default function BuilderPage() {
   const muscleGroups = ['All', 'Chest', 'Back', 'Legs', 'Shoulders', 'Arms', 'Forearms', 'Core', 'Glutes', 'Cardio']
   const dayTypes = ['Chest Day', 'Leg Day', 'Push Day', 'Pull Day', 'Back Day', 'Full Body', 'Cardio Day', 'Rest Day']
 
-  const allExercises = useMemo(() => [...EXERCISES, ...customExercises], [customExercises])
+  const allExercises = useMemo(() => {
+    // Priority: Supplemental > Custom > Original
+    const combined = [...SUPPLEMENTAL_EXERCISES, ...customExercises, ...EXERCISES]
+    // Filter out duplicates if needed, but for now just merging is fine
+    return combined
+  }, [customExercises])
 
   const filteredExercises = useMemo(() => {
     let filtered = allExercises
