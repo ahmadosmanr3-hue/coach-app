@@ -649,7 +649,7 @@ export default function BuilderPage() {
           })}
 
           <div className="mt-auto pt-20 flex justify-between text-[11px] font-bold uppercase">
-            <div>TRAINER: NASR AKRAM</div>
+            <div>TRAINER: {session?.code === 'COACH-123' ? 'Nasr Akram' : (session?.coachName || session?.code)}</div>
             <div>STARTED: _________</div>
             <div>DATE COMN DOE</div>
           </div>
