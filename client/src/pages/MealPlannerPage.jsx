@@ -43,6 +43,22 @@ export default function MealPlannerPage() {
             s.coachName = 'Nasr Akram'
         }
         setSession(s)
+
+        // Pre-fill from assessment
+        const saved = localStorage.getItem('last_assessment_data')
+        if (saved) {
+            try {
+                const data = JSON.parse(saved)
+                if (data.fullName) setClientName(data.fullName)
+                if (data.gender) setClientGender(data.gender)
+                if (data.age) setClientAge(data.age)
+                if (data.height) setClientHeight(data.height)
+                if (data.weight) setClientWeight(data.weight)
+                if (data.goal) setGoal(data.goal === 'Fat Loss' ? 'lose' : data.goal === 'Muscle Gain' ? 'gain' : 'maintain')
+            } catch (e) {
+                console.error("Failed to parse assessment data", e)
+            }
+        }
     }, [navigate])
 
     function calculateCalories() {

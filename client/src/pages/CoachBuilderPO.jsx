@@ -72,6 +72,25 @@ export default function BuilderPage() {
     }
     setSession(s)
     setLoading(false)
+
+    // Pre-fill from assessment if empty
+    const saved = localStorage.getItem('last_assessment_data')
+    if (saved) {
+      try {
+        const data = JSON.parse(saved)
+        setClient(prev => ({
+          ...prev,
+          name: prev.name || data.fullName || '',
+          gender: prev.gender || data.gender || '',
+          age: prev.age || data.age || '',
+          height: prev.height || data.height || '',
+          weight: prev.weight || data.weight || '',
+          goal: prev.goal || data.goal || ''
+        }))
+      } catch (e) {
+        console.error("Failed to parse assessment data", e)
+      }
+    }
   }, [navigate])
 
   // 2. Load Custom Exercises

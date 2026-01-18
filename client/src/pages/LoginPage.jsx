@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { KeyRound } from 'lucide-react'
 import { loginWithCode } from '../lib/api.js'
-import { setSession } from '../lib/session.js'
+import { getSession, setSession } from '../lib/session.js'
 
 function normalizeCode(code) {
   return code.trim()
@@ -13,6 +13,15 @@ export default function LoginPage() {
   const [code, setCode] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+
+  // Auto-redirect if session already exists
+  useMemo(() => {
+    const s = getSession()
+    if (s) {
+      if (s.role === 'admin') navigate('/admin', { replace: true })
+      else if (s.role === 'coach') navigate('/builder', { replace: true })
+    }
+  }, [navigate])
 
   const canSubmit = useMemo(() => normalizeCode(code).length > 0 && !loading, [code, loading])
 

@@ -71,7 +71,10 @@ export default function ClientAssessmentPage() {
 
     function handleChange(e) {
         const { name, value } = e.target
-        setFormData(prev => ({ ...prev, [name]: value }))
+        const newData = { ...formData, [name]: value }
+        setFormData(newData)
+        // Store for other builders to pick up
+        localStorage.setItem('last_assessment_data', JSON.stringify(newData))
     }
 
     function logout() {
