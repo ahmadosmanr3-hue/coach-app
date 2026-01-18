@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { KeyRound } from 'lucide-react'
 import { loginWithCode } from '../lib/api.js'
@@ -15,7 +15,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
 
   // Auto-redirect if session already exists
-  useMemo(() => {
+  useEffect(() => {
     const s = getSession()
     if (s) {
       if (s.role === 'admin') navigate('/admin', { replace: true })

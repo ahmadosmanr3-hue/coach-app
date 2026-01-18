@@ -116,7 +116,8 @@ app.post('/api/workout-logs', requireCoach, async (req, res) => {
 
   if (coachError || !coachData) return res.status(400).json({ error: 'Invalid coach code' })
 
-  const commission_amount = coachData.commission_per_workout || 2
+  // Use commission_amount from body if provided (allows frontend to set $2), otherwise use DB default
+  const commission_amount = req.body.commission_amount || coachData.commission_per_workout || 2
 
   // Safe logging for both array and object structures
   const exerciseCount = Array.isArray(exercises_json)

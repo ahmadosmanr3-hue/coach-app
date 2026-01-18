@@ -266,7 +266,7 @@ export default function BuilderPage() {
       setStatus('Success! PDF downloaded and Log saved.')
 
       // Reset Form
-      setDaysData({ 1: [], 2: [], 3: [] })
+      setDaysData({ 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] })
       setClient({
         name: '',
         gender: '',
