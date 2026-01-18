@@ -1,0 +1,6 @@
+git clone https://github.com/ahmadosmanr3-hue/coach-app.git
+cd coach-app
+npm install
+
+
+WHENEVER I USED THIS FILE ON ANOTHER DEVICE ILL USE THIS FIRST 

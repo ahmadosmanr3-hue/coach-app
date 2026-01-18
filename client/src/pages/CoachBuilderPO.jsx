@@ -207,9 +207,9 @@ export default function BuilderPage() {
       const imgWidth = 210
       const imgHeight = (canvas.height * imgWidth) / canvas.width
       pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight)
-      pdf.save(`${client.name.replace(/\s+/g, '-')}-workout.pdf`)
+      // Saved to variable, download happens LAST
 
-      // 2. Save to Supabase
+      // 2. Save to Supabase (BEFORE triggering download to prevent iOS unloading page)
       await createWorkoutLog(session.code, {
         coach_code: session.code,
         client_name: client.name,
@@ -221,11 +221,22 @@ export default function BuilderPage() {
         exercises_json: selected
       })
 
+      // 3. Trigger Download
+      pdf.save(`${client.name.replace(/\s+/g, '-')}-workout.pdf`)
+
       setStatus('Success! PDF downloaded and Log saved.')
 
-      // Reset Optional
-      // setSelected([])
-      // setClient({...})
+      // Reset Form
+      setSelected([])
+      setClient({
+        name: '',
+        gender: '',
+        age: '',
+        height: '',
+        weight: ''
+      })
+      setCourseName('')
+
 
     } catch (err) {
       console.error(err)
@@ -264,7 +275,7 @@ export default function BuilderPage() {
             </div>
             <button
               onClick={() => navigate('/meal-planner')}
-              className="hidden sm:inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-sm hover:bg-slate-800 transition-colors"
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-sm hover:bg-slate-800 transition-colors"
             >
               <Utensils className="h-4 w-4" />
               Meal Planner
@@ -539,7 +550,9 @@ export default function BuilderPage() {
             </div>
             <div className="text-right">
               <div className="text-xs uppercase tracking-wider text-slate-500 font-semibold mb-1">Coach</div>
-              <div className="font-bold text-lg">{session?.code}</div>
+              <div className="font-bold text-lg">
+                {session?.code === 'COACH-123' ? 'Nasr Akram' : (session?.coachName || session?.code)}
+              </div>
             </div>
           </div>
 

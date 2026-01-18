@@ -99,7 +99,6 @@ export default function AdminPage() {
             <div className="text-xs text-slate-400">Protected by ADMIN-99</div>
           </div>
           <div className="flex items-center gap-2">
-            {/* 
             <button
               onClick={handleResetAll}
               disabled={resetting || loading}
@@ -107,8 +106,7 @@ export default function AdminPage() {
             >
               <Trash2 className="h-4 w-4" />
               {resetting ? 'Resetting…' : 'Reset All'}
-            </button> 
-            */}
+            </button>
             <button
               onClick={load}
               disabled={loading}
@@ -137,7 +135,7 @@ export default function AdminPage() {
           )}
           {coachSummaries.map(({ coachCode, workouts, commission }) => (
             <div key={coachCode} className="rounded-2xl border border-slate-800 bg-slate-900/40 p-4">
-              <div className="text-xs text-slate-400">{coachCode}</div>
+              <div className="text-xs text-slate-400">{coachCode === 'COACH-123' ? 'Nasr Akram' : coachCode}</div>
               <div className="mt-2 text-2xl font-semibold">{workouts}</div>
               <div className="text-xs text-slate-500">workout{workouts !== 1 ? 's' : ''}</div>
               <div className="mt-2 text-lg font-semibold text-green-400">${commission}</div>
@@ -161,7 +159,7 @@ export default function AdminPage() {
               Object.entries(logsByCoach).map(([coachCode, { workouts, mealPlans }]) => (
                 <div key={coachCode} className="px-4 py-4">
                   <div className="mb-3 flex items-center justify-between">
-                    <div className="text-sm font-semibold">Coach: {coachCode}</div>
+                    <div className="text-sm font-semibold">Coach: {coachCode === 'COACH-123' ? 'Nasr Akram' : coachCode}</div>
                     <div className="text-xs text-slate-500">
                       {workouts.length} workout{workouts.length !== 1 ? 's' : ''}, {mealPlans.length} meal plan{mealPlans.length !== 1 ? 's' : ''}
                     </div>
