@@ -150,6 +150,20 @@ export default function ClientAssessmentPage() {
                             <div className="text-lg font-semibold tracking-tight">Client Assessment</div>
                             <div className="text-xs text-slate-400 font-mono">Coach: {session?.coachName || session?.code}</div>
                         </div>
+                        <button
+                            onClick={() => navigate('/builder')}
+                            className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-sm hover:bg-slate-800 transition-colors"
+                        >
+                            <Dumbbell className="h-4 w-4" />
+                            Workout Builder
+                        </button>
+                        <button
+                            onClick={() => navigate('/meal-planner')}
+                            className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-sm hover:bg-slate-800 transition-colors"
+                        >
+                            <Utensils className="h-4 w-4" />
+                            Meal Planner
+                        </button>
                     </div>
                     <button
                         onClick={logout}
@@ -451,7 +465,7 @@ export default function ClientAssessmentPage() {
                 </div>
             </div>
 
-        </div>
+        </div >
     )
 }
 

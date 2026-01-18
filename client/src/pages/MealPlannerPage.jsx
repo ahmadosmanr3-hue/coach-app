@@ -224,15 +224,22 @@ export default function MealPlannerPage() {
                         </div>
                         <button
                             onClick={() => navigate('/builder')}
-                            className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-sm hover:bg-slate-800/50"
+                            className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-sm hover:bg-slate-800/50 transition-colors"
                         >
                             <Utensils className="h-4 w-4" />
                             Workout Builder
                         </button>
+                        <button
+                            onClick={() => navigate('/assessment')}
+                            className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-sm hover:bg-slate-800/50 transition-colors"
+                        >
+                            <FileDown className="h-4 w-4" />
+                            Assessment
+                        </button>
                     </div>
                     <button
                         onClick={logout}
-                        className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-sm"
+                        className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-3 py-2 text-sm hover:bg-red-900/20 hover:text-red-400 transition-colors"
                     >
                         <LogOut className="h-4 w-4" />
                         Logout
@@ -544,6 +551,6 @@ export default function MealPlannerPage() {
                     </div>
                 </div>
             </main>
-        </div>
+        </div >
     )
 }
