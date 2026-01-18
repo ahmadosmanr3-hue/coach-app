@@ -6,11 +6,11 @@ import { createClient } from '@supabase/supabase-js'
 const { SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, PORT } = process.env
 
 // Temporary hardcoded values
-const supabaseUrl = SUPABASE_URL || 'https://vvxuersifqewbxaowqnj.supabase.co'
-const supabaseKey = SUPABASE_SERVICE_ROLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ2eHVlcnNpZnFld2J4YW93cW5qIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2ODMwNDExNywiZXhwIjoyMDgzODgwMTE3fQ.G1XBYUkpeESO-TGUZDSoLEQy4w9CWWS8UdAAaSlepe4'
+const supabaseUrl = 'https://vvxuersifqewbxaowqnj.supabase.co'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ2eHVlcnNpZnFld2J4YW93cW5qIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2ODMwNDExNywiZXhwIjoyMDgzODgwMTE3fQ.G1XBYUkpeESO-TGUZDSoLEQy4w9CWWS8UdAAaSlepe4'
 
 if (!supabaseUrl || !supabaseKey) {
-  throw new Error('Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY in server environment')
+  throw new Error('Supabase credentials missing')
 }
 
 const supabase = createClient(supabaseUrl, supabaseKey)
@@ -53,24 +53,32 @@ app.get('/api/health', (req, res) => {
 })
 
 app.post('/api/login', async (req, res) => {
-  const code = (req.body?.code || '').trim()
-  if (!code) return res.status(400).json({ error: 'Code is required' })
+  try {
+    const code = (req.body?.code || '').trim()
+    if (!code) return res.status(400).json({ error: 'Code is required' })
 
-  if (code === 'ADMIN-99') {
-    return res.json({ role: 'admin', code: 'ADMIN-99' })
+    if (code === 'ADMIN-99') {
+      return res.json({ role: 'admin', code: 'ADMIN-99' })
+    }
+
+    const { data, error } = await supabase
+      .from('access_codes')
+      .select('code, coach_name, role')
+      .eq('code', code)
+      .eq('role', 'coach')
+      .maybeSingle()
+
+    if (error) {
+      console.error('Supabase Error:', error)
+      return res.status(500).json({ error: 'Db Error: ' + error.message })
+    }
+    if (!data) return res.status(401).json({ error: 'Invalid access code' })
+
+    res.json(data)
+  } catch (err) {
+    console.error('Login Crash:', err)
+    res.status(500).json({ error: 'Server Crash: ' + err.message })
   }
-
-  const { data, error } = await supabase
-    .from('access_codes')
-    .select('code, coach_name, role')
-    .eq('code', code)
-    .eq('role', 'coach')
-    .maybeSingle()
-
-  if (error) return res.status(500).json({ error: error.message })
-  if (!data) return res.status(401).json({ error: 'Invalid access code' })
-
-  res.json(data)
 })
 
 app.post('/api/workout-logs', requireCoach, async (req, res) => {
